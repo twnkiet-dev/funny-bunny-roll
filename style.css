@@ -1,0 +1,51 @@
+/* style.css */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    flex: 0 0 auto; /* giữ nguyên kích thước */
+}
+
+.container {
+    flex: 1 1 auto; /* chiếm toàn bộ không gian giữa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* co giãn vừa khung, không méo ảnh */
+}
+
+button {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+button img {
+    width: 400px;
+}
+
+@keyframes spin {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
+  }
+  
+  .spin {
+    animation: spin 0.8s ease-in-out;
+  }
