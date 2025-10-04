@@ -4,26 +4,32 @@ const images = [
     {src:"images/three.png", weight: 6},
     {src:"images/spin.png", weight: 12}
 ];
+
 const demoImg = document.getElementById('demoImg');
 const rollBtn = document.getElementById('rollBtn');
-document.getElementById("rollBtn").addEventListener("click", function () {
-    let img = document.getElementById("demoImg");
-    img.classList.remove("spin");
-    void img.offsetWidth;
-    img.classList.add("spin");
-});
-function rollImage() {
-    const total = images.reduce((sum, img) => sum + img.weight, 0);
 
+function rollImage() {
+    demoImg.classList.add("spin");
+
+    const total = images.reduce((sum, img) => sum + img.weight, 0);
     let rand = Math.random() * total;
+    let chosen = null;
 
     for (let i = 0; i < images.length; i++) {
         rand -= images[i].weight;
         if (rand < 0) {
-            demoImg.src = images[i].src;
+            chosen = images[i];
             break;
         }
     }
-}
-rollBtn.addEventListener('click', rollImage);
 
+    setTimeout(() => {
+        demoImg.src = chosen.src;
+    }, 400);
+
+    demoImg.addEventListener("animationend", () => {
+        demoImg.classList.remove("spin");
+    }, { once: true });
+}
+
+rollBtn.addEventListener('click', rollImage);
